@@ -34,6 +34,8 @@ def main():
         if crack:
             print("[!] The password is: " + password)
             break
+        else:
+            print("[!] Reached the end of wordlist!")
 
 if __name__ == '__main__':
     main()
