@@ -25,9 +25,9 @@ def main():
         print("[!] Write an existing Zip file")
     if textFileVerification == ".txt":
             textFileVerification = wordlist
+            wordlist = open(wordlist)
     else:
-        print("[!] Write an existing text file")
-    wordlist = open(wordlist) 
+        print("[!] Write an existing text file") 
     for line in wordlist.readlines():
         password = line.strip("\n")
         crack = extractZip(zipFile, password)
