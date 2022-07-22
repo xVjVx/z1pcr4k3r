@@ -36,6 +36,7 @@ def main():
             break
         else:
             print("[!] Reached the end of wordlist!")
+            break
 
 if __name__ == '__main__':
     main()
