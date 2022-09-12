@@ -27,8 +27,8 @@ def main():
         print("[!] Write an existing Zip file")
         
    if textFileVerification == ".txt":
-            textFileVerification = wordlist
-            wordlist = open(wordlist)
+        textFileVerification = wordlist
+        wordlist = open(wordlist)
     else:
         print("[!] Write an existing text file")
         
