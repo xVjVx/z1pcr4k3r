@@ -17,17 +17,21 @@ def extractZip(zipFile, password):
 def main():
     zipFile = sys.argv[1]
     wordlist = sys.argv[2]
+    
     textFileVerification = os.path.splitext(wordlist)[-1].lower()
     zipVerification = zipfile.is_zipfile(zipFile)
+    
     if zipVerification == True:
         zipFile = zipfile.ZipFile(sys.argv[1])
     else:
         print("[!] Write an existing Zip file")
-    if textFileVerification == ".txt":
+        
+   if textFileVerification == ".txt":
             textFileVerification = wordlist
             wordlist = open(wordlist)
     else:
-        print("[!] Write an existing text file") 
+        print("[!] Write an existing text file")
+        
     for line in wordlist.readlines():
         password = line.strip("\n")
         crack = extractZip(zipFile, password)
