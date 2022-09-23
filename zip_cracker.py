@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+
+# Importing the libraries
 from pathlib import Path
-import zipfile
+import pyzipper
 import sys
 import os
 
@@ -20,37 +22,42 @@ print(r"""
 
 # Fuction to extract the content of the Zip File
 def extractZip(zipFile, password):
-    try:
-        zipFile.extractall(pwd=bytes(password, 'utf-8'))
-        return password
-    except:
-        return
+    with pyzipper.AESZipFile(zipFile, 'r') as zipFile:
+        try:
+            zipFile.extractall(pwd=bytes(password, 'ASCII'))
+            return password
+        except:
+            return
 
 def main():
     zipFile = sys.argv[1]
     wordlist = sys.argv[2]
 
-    zipVerification = zipfile.is_zipfile(zipFile)
+    # Making the verification of the text and zip file
     textFileVerification = os.path.splitext(wordlist)[-1].lower()
+    zipVerification = pyzipper.is_zipfile(zipFile)
 
-    if zipVerification == True:
-        zipFile = zipfile.ZipFile(sys.argv[1])
-    else:
+    if zipVerification == False:
         print("[!] Type a valid Zip file")
+        return
 
     if textFileVerification == ".txt":
         textFileVerification = wordlist
         wordlist = open(wordlist)
     else:
         print("[!] Type a valid text file")
-        
+
+    print("[+] Starting the crack...")
+
+    # For loop to make the crack
     for line in wordlist.readlines():
-        password = line.strip("\n")
+        password = line.strip('\n')
         crack = extractZip(zipFile, password)
-        print("[+] Starting the crack...")
         if crack:
             print("[+] The password is: " + password)
             break
+    if crack == None:
+        print("[!] Reached the end of the wordlist and couldn't crack the password")
 
 if __name__ == '__main__':
     main()
