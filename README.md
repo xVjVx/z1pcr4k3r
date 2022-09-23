@@ -1,5 +1,5 @@
 # Zip-Cracker
-Script in Python to bruteforce passwords of zip files
+Script in Python to crack passwords of zip files
 
 ## Execution
 
