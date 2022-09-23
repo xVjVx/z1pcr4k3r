@@ -38,16 +38,16 @@ def main():
     else:
         print("[!] Type a valid Zip file")
 
-        
     if textFileVerification == ".txt":
         textFileVerification = wordlist
         wordlist = open(wordlist)
     else:
-        print("[!] Write an existing text file")
+        print("[!] Type a valid text file")
         
     for line in wordlist.readlines():
         password = line.strip("\n")
         crack = extractZip(zipFile, password)
+        print("[+] Starting the crack...")
         if crack:
             print("[+] The password is: " + password)
             break
