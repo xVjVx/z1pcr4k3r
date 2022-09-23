@@ -1,4 +1,3 @@
-from pathlib import Path
 import zipfile
 import sys
 import os
@@ -17,26 +16,26 @@ def extractZip(zipFile, password):
 def main():
     zipFile = sys.argv[1]
     wordlist = sys.argv[2]
-    
-    textFileVerification = os.path.splitext(wordlist)[-1].lower()
+
     zipVerification = zipfile.is_zipfile(zipFile)
-    
+    textFileVerification = os.path.splitext(wordlist)
+
     if zipVerification == True:
         zipFile = zipfile.ZipFile(sys.argv[1])
     else:
-        print("[!] Write an existing Zip file")
+        print("[!] Type a valid Zip file")
         
-   if textFileVerification == ".txt":
+    if textFileVerification[1] == ".txt":
         textFileVerification = wordlist
         wordlist = open(wordlist)
     else:
-        print("[!] Write an existing text file")
+        print("[!] Type a valid text file")
         
     for line in wordlist.readlines():
         password = line.strip("\n")
         crack = extractZip(zipFile, password)
         if crack:
-            print("[!] The password is: " + password)
+            print("[+] The password is: " + password)
             break
         else:
             print("[!] Reached the end of wordlist!")
