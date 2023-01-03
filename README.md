@@ -12,5 +12,5 @@ pip install pyzipper
 You have to run this with **sudo** privileges
 
 ```sh
-sudo python3 zip_cracker.py [zipfile] [wordlist]
+sudo python3 zip_cracker.py zipfile wordlist
 ```
