@@ -3,8 +3,9 @@ Script in Python to crack passwords of zip files
 
 ## Libraries
 
+Install the requirements
 ```sh
-pip install pyzipper
+python3 -m pip install -r requirements.txt
 ```
 
 ## Execution
